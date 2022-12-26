@@ -7,9 +7,8 @@ pipeline {
         sh 'sudo apt-get update'
         sh 'apt-get install nodejs -y'
         sh 'npm install'
-        sh 'sudo chmod a+r /etc/apt/keyrings/docker.gpg'
-        sh 'sudo apt-get update'
-        sh 'sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin'
+        sh 'sudo apt install docker.io && sudo snap install docker'
+
     }
     stage('Test') {
       steps {
