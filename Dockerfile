@@ -1,12 +1,14 @@
 # install package
 FROM node:latest
 
+# define working directory within container
+WORKDIR /app
+
 # copy packages
-COPY package.json .
-COPY webapp.js .
+COPY . .
 
 # install dependency npm
-RUN npm install -g npm@7.5.4
+RUN npm install express nodemon
 
 # expose web server listening port
 EXPOSE 3000
