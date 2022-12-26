@@ -4,6 +4,9 @@ pipeline {
   stages {
     stage('Build') {
       steps {
+        sh 'sudo apt-get update'
+        sh 'sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin'
+        sh 'apt-get install nodejs -y'
         sh 'npm install'
       }
     }
