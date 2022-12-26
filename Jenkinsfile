@@ -19,7 +19,7 @@ pipeline {
 
     stage('Run Docker Container') {
       steps {
-        sh 'docker run -p 3000:3000 */webdata/my-webapp'
+        sh 'docker run -p 3000:3000 my-webapp'
       }
     }
   }
