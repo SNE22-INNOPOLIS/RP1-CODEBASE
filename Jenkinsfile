@@ -7,7 +7,7 @@ pipeline {
       steps {
         sh 'sudo apt-get update'
         sh 'apt-get install nodejs -y'
-        sh 'npm install'
+        sh 'npm install express'
         sh 'sudo apt install docker.io && sudo snap install docker'
       }
     }
