@@ -5,10 +5,11 @@ pipeline {
     stage('Build') {
       steps {
         sh 'sudo apt-get update'
-        sh 'sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin'
         sh 'apt-get install nodejs -y'
         sh 'npm install'
-      }
+        sh 'sudo chmod a+r /etc/apt/keyrings/docker.gpg'
+        sh 'sudo apt-get update'
+        sh 'sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin'
     }
     stage('Test') {
       steps {
