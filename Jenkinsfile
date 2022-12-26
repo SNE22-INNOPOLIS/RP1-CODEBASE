@@ -2,7 +2,7 @@ pipeline {
   agent any
 
   stages {
-    stage('Build') {
+    stage('Build and Install Environment') {
       steps {
         sh 'sudo apt-get update'
         sh 'apt-get install nodejs -y'
