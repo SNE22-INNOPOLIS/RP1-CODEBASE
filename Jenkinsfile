@@ -6,7 +6,6 @@ pipeline {
     stage('Build and Install') {
       steps {
         sh 'sudo apt-get update'
-        sh 'apt-get install nodejs -y'
         sh 'sudo apt install docker.io -y && sudo snap install docker'
       }
     }
