@@ -15,7 +15,7 @@ RUN npm install express
 
 
 # expose web server listening port
-EXPOSE 8080
+EXPOSE 9000
 
 # run command within container
 CMD ["node", "/app/webdata/webapp.js"]

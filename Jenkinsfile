@@ -18,7 +18,7 @@ pipeline {
 
     stage('Run Docker Container') {
       steps {
-        sh 'docker run -p 8080:8080 sne_webapp'
+        sh 'docker run -p 9000:9000 sne_webapp'
       }
     }
   }
