@@ -8,6 +8,7 @@ WORKDIR /app
 COPY . .
 
 # install dependency npm
+RUN npm init -y
 RUN npm install express
 
 # expose web server listening port
