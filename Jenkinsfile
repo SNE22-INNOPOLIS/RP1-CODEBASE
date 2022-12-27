@@ -20,7 +20,15 @@ pipeline {
     stage('Run Docker Container') {
       steps {
         sh 'docker run -d --name sne22-webapp -p 9000:9000 my-webapp'
-        echo 'container deployment was successful>>>'
+        echo 'container deployment was successfull>>>'
+      }
+    }
+
+        stage('Push to Repo') {
+      steps {
+        sh 'docker tag my-webapp samsonidowu/sne22-rp1/my-webapp:latest'
+        sh 'docker push samsonidowu/sne22-rp1/my-webapp:latest'
+        echo 'container image push was successfull>>>'
       }
     }
   }
