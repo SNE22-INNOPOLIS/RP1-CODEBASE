@@ -12,9 +12,7 @@ pipeline {
 
     stage('Build Docker Image') {
       steps {
-        sh 'docker stop stoic_haslett .'
         sh 'docker build -t sne_webapp .'
-        
       }
     }
 
