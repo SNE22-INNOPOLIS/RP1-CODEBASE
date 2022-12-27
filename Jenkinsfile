@@ -12,13 +12,13 @@ pipeline {
 
     stage('Build Docker Image') {
       steps {
-        sh 'docker build -t sne_webapp .'
+        sh 'docker build -t webapp .'
       }
     }
 
     stage('Run Docker Container') {
       steps {
-        sh 'docker run -d -p 9000:9000 sne_webapp'
+        sh 'docker run -d -p 9000:9000 webapp'
       }
     }
   }
