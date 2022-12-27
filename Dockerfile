@@ -12,7 +12,7 @@ COPY . .
 # install dependency npm
 RUN rm -rf node_modules package-lock.json
 RUN npm install express
-RUN cd webdata
+
 
 # expose web server listening port
 EXPOSE 3000
