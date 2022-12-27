@@ -12,7 +12,7 @@ pipeline {
 
     stage('Build Docker Image') {
       steps {
-        sh 'docker rm -f $(docker ps -a -q)'
+        //sh 'docker rm -f $(docker ps -a -q)'
         sh 'docker build -t my-webapp .'
       }
     }
