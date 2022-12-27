@@ -10,9 +10,9 @@ COPY webapp.js .
 COPY package.json .
 
 # install dependency npm
-#RUN rm -rf node_modules package-lock.json
-#RUN npm install express
-RUN npm install
+RUN rm -rf node_modules package-lock.json
+RUN npm install express
+
 
 # expose web server listening port
 EXPOSE 3000
