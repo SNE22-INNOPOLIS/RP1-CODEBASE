@@ -5,12 +5,14 @@ FROM node:latest
 WORKDIR /app
 
 # copy packages
-COPY . .
+#COPY . .
+COPY webapp.js .
+COPY package.json .
 
 # install dependency npm
-#RUN npm init -y
-RUN rm -rf node_modules package-lock.json
-RUN npm install express
+#RUN rm -rf node_modules package-lock.json
+#RUN npm install express
+RUN npm install
 
 # expose web server listening port
 EXPOSE 3000
