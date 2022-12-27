@@ -18,4 +18,4 @@ RUN npm install express
 EXPOSE 3000
 
 # run command within container
-CMD ["node", "webapp.js"]
+CMD ["node", "/app/webdata/webapp.js"]
