@@ -12,8 +12,9 @@ pipeline {
 
     stage('Build Docker Image') {
       steps {
+        sh 'docker stop -t 10 my-webapp .'
         sh 'docker build -t my-webapp .'
-        sh 'docker stop my-webapp'
+        
       }
     }
 
