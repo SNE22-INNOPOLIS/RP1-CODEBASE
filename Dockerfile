@@ -6,8 +6,8 @@ FROM node:latest
 
 # copy packages
 #COPY . .
-COPY webapp.js .
-COPY package.json .
+COPY webdata/webapp.js .
+COPY webdata/package.json .
 
 # install dependency npm
 RUN rm -rf node_modules package-lock.json
