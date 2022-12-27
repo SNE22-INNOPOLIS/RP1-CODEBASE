@@ -27,7 +27,7 @@ pipeline {
         stage('Push to Repo') {
       steps {
         sh 'docker login -u samsonidowu -p dckr_pat_qKDzQb7FvH9_keGP_gZCM4V1d_c'
-        sh 'docker tag my-webapp samsonidowu/sne22-rp1:latest'
+        sh 'docker tag my-webapp samsonidowu/sne22-rp1/my-webapp:latest'
         sh 'docker push samsonidowu/sne22-rp1/my-webapp:latest'
         echo 'container image push was successfull>>>'
       }
