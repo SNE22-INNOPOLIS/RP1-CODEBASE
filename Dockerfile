@@ -9,9 +9,8 @@ COPY . .
 
 # install dependency npm
 #RUN npm init -y
-#RUN npm install express
 RUN rm -rf node_modules package-lock.json
-RUN npm install
+RUN npm install express
 
 # expose web server listening port
 EXPOSE 3000
