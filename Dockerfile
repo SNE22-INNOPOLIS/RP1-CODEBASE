@@ -2,7 +2,7 @@
 FROM node:latest
 
 # define working directory within container
-WORKDIR /app
+#WORKDIR /app
 
 # copy packages
 #COPY . .
