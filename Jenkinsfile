@@ -20,6 +20,7 @@ pipeline {
     stage('Run Docker Container') {
       steps {
         sh 'docker run -d --name sne22-webapp -p 9000:9000 my-webapp'
+        sh 'echo container deployment was successful>>>'
       }
     }
   }
