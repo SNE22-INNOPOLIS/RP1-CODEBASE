@@ -8,8 +8,10 @@ WORKDIR /app
 COPY . .
 
 # install dependency npm
-RUN npm init -y
-RUN npm install express
+#RUN npm init -y
+#RUN npm install express
+RUN rm -rf node_modules package-lock.json
+RUN npm install
 
 # expose web server listening port
 EXPOSE 3000
