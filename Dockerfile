@@ -8,8 +8,7 @@ WORKDIR /app
 COPY . .
 
 # install dependency npm
-#RUN npm install express nodemon
-RUN rm -rf node_modules && npm i
+RUN npm install express
 
 # expose web server listening port
 EXPOSE 3000
