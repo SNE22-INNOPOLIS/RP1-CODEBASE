@@ -12,15 +12,15 @@ pipeline {
 
     stage('Build Docker Image') {
       steps {
-        sh 'docker stop -t 10 my-webapp .'
-        sh 'docker build -t my-webapp .'
+        sh 'docker stop stoic_haslett .'
+        sh 'docker build -t sne_webapp .'
         
       }
     }
 
     stage('Run Docker Container') {
       steps {
-        sh 'docker run -p 8080:8080 my-webapp'
+        sh 'docker run -p 8080:8080 sne_webapp'
       }
     }
   }
