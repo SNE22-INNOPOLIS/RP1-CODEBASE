@@ -2,19 +2,20 @@
 FROM node:latest
 
 # define working directory within container
-#WORKDIR /app
+WORKDIR /app
 
 # copy packages
-#COPY . .
-COPY webdata/webapp.js .
-COPY webdata/package.json .
+COPY . .
+#COPY webdata/webapp.js .
+#COPY webdata/package.json .
 
 # install dependency npm
 RUN rm -rf node_modules package-lock.json
 RUN npm install express
+RUN cd webdata
 
 # expose web server listening port
 EXPOSE 3000
 
 # run command within container
-CMD ["node", "webdata/webapp.js"]
+CMD ["node", "webapp.js"]
