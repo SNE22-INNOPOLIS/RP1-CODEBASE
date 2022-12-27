@@ -18,7 +18,7 @@ pipeline {
 
     stage('Run Docker Container') {
       steps {
-        sh 'docker run -p 3000:3000 my-webapp'
+        sh 'docker run -p 8080:8080 my-webapp'
       }
     }
   }
