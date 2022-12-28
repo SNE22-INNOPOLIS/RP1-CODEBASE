@@ -1,6 +1,5 @@
 pipeline {
   agent any
-  //agent {label 'Agent 2'}
 
   stages {
 
@@ -43,9 +42,9 @@ pipeline {
       }
     }
 
-    stage('Restart Container on Remote Server') {
+    stage('Start Container on Remote Server') {
       steps {
-        sshagent(['ssh-key']) {
+        sshagent(credentials: [4618699a-2bbb-41fa-a9ad-2c7924d5c84a]) {
           //sh 'ssh samson@10.1.1.24 "docker stop my-web-app || true"'
           sh 'ssh samson@10.1.1.24 "docker run -p 3000:9000 -d --name sne22-webapp samsonidowu/my-webapp:latest"'
         }
