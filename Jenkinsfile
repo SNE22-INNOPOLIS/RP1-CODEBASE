@@ -3,35 +3,41 @@ pipeline {
 
   stages {
 
-    stage('Build and Install') {
+    stage('Install') {
       steps {
         sh 'sudo apt-get update'
         sh 'sudo apt install docker.io -y && sudo snap install docker'
+        echo 'necessary updates and installation completed>>>'
       }
     }
 
-    stage('Build Docker Image') {
+    stage('Build') {
       steps {
         sh 'docker rm -f sne22-webapp'
         sh 'docker build -t my-webapp .'
+        echo 'build completed>>>'
       }
     }
 
-    stage('Run Docker Container') {
+    stage('Test') {
       steps {
         sh 'docker run -d --name sne22-webapp -p 9000:9000 my-webapp'
-        echo 'container deployment was successfull>>>'
+        echo 'container test deployment was successfull>>>'
       }
     }
 
-        stage('Push to Container Repo') {
+    stage('Push') {
       steps {
-        echo 'now pushing to dockerhub...'
+        echo 'now pushing working image to dockerhub...'
         sh 'docker login -u samsonidowu -p dckr_pat_qKDzQb7FvH9_keGP_gZCM4V1d_c docker.io'
         sh 'docker tag my-webapp samsonidowu/my-webapp:latest'
         sh 'docker push samsonidowu/my-webapp:latest'
         echo 'container image push was successfull>>>'
-
+      }
+    }
+    stage('Cleanup') {
+      steps {
+        echo 'initializing test server cleanup...'
         sh 'docker rm -f $(docker ps -a -q)'
         echo 'removed container runtime'
         sh 'docker image prune'
