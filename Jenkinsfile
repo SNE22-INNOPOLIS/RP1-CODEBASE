@@ -33,5 +33,22 @@ pipeline {
         echo 'container image push was successfull>>>'
       }
     }
+
+    stage('Deploy to Remote Server') {
+      steps {
+        sshagent(['ssh-key']) {  
+          sh 'ssh samson@10.1.1.24 "docker pull samsonidowu/my-webapp"'
+        }
+      }
+    }
+
+    stage('Restart Container on Remote Server') {
+      steps {
+        sshagent(['ssh-key']) {
+          //sh 'ssh samson@10.1.1.24 "docker stop my-web-app || true"'
+          sh 'ssh samson@10.1.1.24 "docker run -p 80:9000 -d --name my-web-app REGISTRY_URL/my-web-app:latest"'
+        }
+      }
+    }
   }
 }
