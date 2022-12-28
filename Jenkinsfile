@@ -33,22 +33,5 @@ pipeline {
         echo 'container image push was successfull>>>'
       }
     }
-
-    stage('Deploy to Remote Server') {
-      steps {
-        sshagent(credentials: [4618699a-2bbb-41fa-a9ad-2c7924d5c84a]) {  
-          sh 'ssh samson@10.1.1.24 "docker pull samsonidowu/my-webapp:latest"'
-        }
-      }
-    }
-
-    stage('Start Container on Remote Server') {
-      steps {
-        sshagent(credentials: [4618699a-2bbb-41fa-a9ad-2c7924d5c84a]) {
-          //sh 'ssh samson@10.1.1.24 "docker stop my-web-app || true"'
-          sh 'ssh samson@10.1.1.24 "docker run -p 3000:9000 -d --name sne22-webapp samsonidowu/my-webapp:latest"'
-        }
-      }
-    }
   }
 }
