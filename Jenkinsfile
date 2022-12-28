@@ -31,10 +31,10 @@ pipeline {
         sh 'docker tag my-webapp samsonidowu/my-webapp:latest'
         sh 'docker push samsonidowu/my-webapp:latest'
         echo 'container image push was successfull>>>'
-        
+
         sh 'docker rm -f $(docker ps -a -q)'
         echo 'removed container runtime'
-        sh 'docker rmi $(docker images -a -q)'
+        sh 'docker image prune'
         echo 'removed docker image'
       }
     }
