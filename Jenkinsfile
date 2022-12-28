@@ -24,13 +24,18 @@ pipeline {
       }
     }
 
-        stage('Push to Repo') {
+        stage('Push to Container Repo') {
       steps {
         echo 'now pushing to dockerhub...'
         sh 'docker login -u samsonidowu -p dckr_pat_qKDzQb7FvH9_keGP_gZCM4V1d_c docker.io'
         sh 'docker tag my-webapp samsonidowu/my-webapp:latest'
         sh 'docker push samsonidowu/my-webapp:latest'
         echo 'container image push was successfull>>>'
+        
+        sh 'docker rm -f $(docker ps -a -q)'
+        echo 'removed container runtime'
+        sh 'docker rmi $(docker images -a -q)'
+        echo 'removed docker image'
       }
     }
   }
