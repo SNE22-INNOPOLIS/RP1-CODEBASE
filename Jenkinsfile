@@ -1,6 +1,6 @@
 pipeline {
-  agent any
-  // agent {label 'Agent 2'}
+  //agent any
+  agent {label 'Agent 2'}
 
   stages {
 
@@ -37,7 +37,7 @@ pipeline {
 
     stage('Deploy to Remote Server') {
       steps {
-        sshagent(credentials: [1e3d937f-321a-4488-939e-d804b16b643a]) {  
+        sshagent(credentials: [4618699a-2bbb-41fa-a9ad-2c7924d5c84a]) {  
           sh 'ssh samson@10.1.1.24 "docker pull samsonidowu/my-webapp:latest"'
         }
       }
