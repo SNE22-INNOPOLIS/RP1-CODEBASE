@@ -35,15 +35,6 @@ pipeline {
         echo 'container image push was successfull>>>'
       }
     }
-    stage('Cleanup') {
-      steps {
-        echo 'initializing test server cleanup...'
-        sh 'docker rm -f $(docker ps -a -q)'
-        echo 'removed container runtime'
-        sh 'docker image prune'
-        echo 'removed docker image'
-      }
-    }
     stage('Code-Analysis') {
       steps {
         echo'initializing the code analysis'
@@ -53,5 +44,14 @@ pipeline {
         snykSecurity severity: 'high', snykInstallation: 'Please define a Snyk installation in the Jenkins Global Tool Configuration. This task will not run without a Snyk installation.', snykTokenId: 'Snyk-Jenkins'
       }
     } 
+    stage('Cleanup') {
+      steps {
+        echo 'initializing test server cleanup...'
+        sh 'docker rm -f $(docker ps -a -q)'
+        echo 'removed container runtime'
+        sh 'docker image prune'
+        echo 'removed docker image'
+      }
+    }
   }
 }
