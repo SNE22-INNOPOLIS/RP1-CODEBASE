@@ -48,6 +48,7 @@ pipeline {
       steps {
         echo'initializing the code analysis'
         sh '''
+        apt update -y
         apt install nmp -y
         npm install snyk -g
         '''
