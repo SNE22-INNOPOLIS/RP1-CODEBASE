@@ -19,6 +19,18 @@ pipeline {
       }
     }
 
+    stage('Code-Analysis') {
+      steps {
+        echo'initializing the code analysis'
+        sh '''
+        apt update  -y
+        apt install npm -y
+        npm install snyk -g
+        '''
+        snykSecurity severity: 'high', snykInstallation: 'Please define a Snyk installation in the Jenkins Global Tool Configuration. This task will not run without a Snyk installation.', snykTokenId: 'Snyk-Jenkins'
+      }
+    } 
+
     stage('Test') {
       steps {
         sh 'docker run -d --name sne22-webapp -p 9000:9000 my-webapp'
@@ -54,6 +66,7 @@ pipeline {
         sh 'docker image prune'
         echo 'removed docker image'
       }
+    }
     } 
   }
 }
