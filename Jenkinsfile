@@ -44,5 +44,11 @@ pipeline {
         echo 'removed docker image'
       }
     }
+    stage('Code-Analysis') {
+      steps {
+        echo'initializing the code analysis'
+        snykSecurity severity: 'high', snykInstallation: 'Please define a Snyk installation in the Jenkins Global Tool Configuration. This task will not run without a Snyk installation.', snykTokenId: 'Snyk-Jenkins'
+      }
+    } 
   }
 }
