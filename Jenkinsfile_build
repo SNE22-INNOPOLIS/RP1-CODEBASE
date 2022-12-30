@@ -45,7 +45,7 @@ pipeline {
         echo 'initializing test server cleanup...'
         sh 'docker rm -f $(docker ps -a -q)'
         echo 'removed container runtime'
-        sh 'docker image prune'
+        sh 'docker image prune -af'
         echo 'removed docker image'
       }
     }
