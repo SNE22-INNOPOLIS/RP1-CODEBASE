@@ -10,7 +10,8 @@ pipeline {
         sh 'sudo apt-get update -y'
         sh 'sudo apt install docker.io -y && sudo snap install docker'
         sh 'docker pull samsonidowu/my-webapp:latest'
-        sh 'docker run -d --name sne22-webapp -p 9000:9000 my-webapp'
+        sh 'docker stop sne22-webapp || true'
+        sh 'docker run -d --name sne22-webapp -p 9000:9000 samsonidowu/my-webapp:latest'
         echo 'container was successfully deployed to production!!!'
         echo 'you can now access the application on 10.1.1.40:9000 >>>'
       }
