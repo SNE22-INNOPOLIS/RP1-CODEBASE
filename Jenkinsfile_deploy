@@ -3,7 +3,8 @@ pipeline {
 
   stages {
 
-    stage('Remove Previous Version') {
+    // Removing previous and running versions of the container image
+    stage('Clean') {
       steps {
         sh 'sudo apt-get update -y'
         sh 'sudo apt install docker.io -y && sudo snap install docker'
@@ -16,13 +17,19 @@ pipeline {
       }
     }
 
-    // Deploying the container to production environment (webserver machine)
-    stage('Deploy') {
+    // Pulling the image from the container repository
+    stage('Pull') {
       steps {
         echo 'pulling container image from repository>>>'
         sh 'docker pull samsonidowu/my-webapp:latest'
         echo 'pulling successfull!'
+      }
+    }
+  }
 
+    // Deploying the container to production environment (webserver machine)
+    stage('Deploy') {
+      steps {
         echo 'attempting container run on port 9000>>>'
         sh 'docker run -d --name sne22-webapp -p 9000:9000 samsonidowu/my-webapp:latest'
         echo 'container now running!'
