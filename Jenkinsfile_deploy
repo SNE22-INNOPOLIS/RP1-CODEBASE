@@ -1,0 +1,19 @@
+pipeline {
+  agent {label 'webserver'}
+
+  stages {
+
+    // Deploying the container to production environment (webserver machine)
+    stage('Deploy to Production') {
+      steps {
+        echo 'deploying to production server>>>'
+        sh 'sudo apt-get update -y'
+        sh 'sudo apt install docker.io -y && sudo snap install docker'
+        sh 'docker pull samsonidowu/my-webapp:latest'
+        sh 'docker run -d --name sne22-webapp -p 9000:9000 my-webapp'
+        echo 'container was successfully deployed to production!!!'
+        echo 'you can now access the application on 10.1.1.40:9000 >>>'
+      }
+    }
+  }
+}
