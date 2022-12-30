@@ -3,6 +3,7 @@ pipeline {
 
   stages {
 
+    // Building, Testing and the Application.
     stage('Install') {
       steps {
         sh 'sudo apt-get update'
@@ -19,6 +20,7 @@ pipeline {
       }
     }
 
+    // Security Testing of Code
     stage('Code-Analysis') {
       steps {
         echo'initializing the code analysis'
@@ -31,6 +33,7 @@ pipeline {
       }
     } 
 
+    // Testing the container run-time
     stage('Test') {
       steps {
         sh 'docker run -d --name sne22-webapp -p 9000:9000 my-webapp'
@@ -38,6 +41,7 @@ pipeline {
       }
     }
 
+    // Pushing application and it's artifacts to container repository
     stage('Push') {
       steps {
         echo 'now pushing working image to dockerhub...'
@@ -47,6 +51,10 @@ pipeline {
         echo 'container image push was successfull>>>'
       }
     }
+<<<<<<< HEAD
+
+    // Deleting the container from the jenkins agent node
+=======
 
         stage('Code-Analysis') {
       steps {
@@ -58,6 +66,7 @@ pipeline {
       }
     }
     
+>>>>>>> f6dc546a8a0c367f1872aba04b49919349b26dfa
     stage('Cleanup') {
       steps {
         echo 'initializing test server cleanup...'
@@ -68,5 +77,22 @@ pipeline {
       }
     }
     } 
+  }
+
+  // Deploying the container to production environment (webserver machine)
+  agent {label 'webserver'}
+
+  stages {
+    stage('Deploy to Production') {
+      steps {
+        echo 'deploying to production server>>>'
+        sh 'sudo apt-get update'
+        sh 'sudo apt install docker.io -y && sudo snap install docker'
+        sh 'docker pull samsonidowu/my-webapp:latest'
+        sh 'docker run -d --name sne22-webapp -p 9000:9000 my-webapp'
+        echo 'container was successfully deployed to production!!!'
+        echo 'you can now access the application on 10.1.1.40:9000 >>>'
+      }
+    }
   }
 }
