@@ -3,7 +3,7 @@ pipeline {
 
   stages {
 
-    // Building, Testing and the Application.
+    // Building and Testing the application.
     stage('Install') {
       steps {
         sh 'sudo apt-get update'
