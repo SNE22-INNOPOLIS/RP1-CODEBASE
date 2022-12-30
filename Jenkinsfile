@@ -50,8 +50,11 @@ pipeline {
       }
     }
   }
+}
 
-  // Deploying the container to production environment (webserver machine)
+// Deploying the container to production environment (webserver machine)
+
+pipeline {
   agent {label 'webserver'}
 
   stages {
