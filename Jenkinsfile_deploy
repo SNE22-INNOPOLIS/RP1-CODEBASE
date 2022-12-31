@@ -21,7 +21,7 @@ pipeline {
     stage('Pull') {
       steps {
         echo 'pulling container image from repository>>>'
-        sh 'docker pull samsonidowu/my-webapp:latest'
+        sh 'docker pull rp1sne22/my-webapp:latest'
         echo 'pulling successfull!'
       }
     }
@@ -30,7 +30,7 @@ pipeline {
     stage('Deploy') {
       steps {
         echo 'attempting container run on port 9000>>>'
-        sh 'docker run -d --name sne22-webapp -p 9000:9000 samsonidowu/my-webapp:latest'
+        sh 'docker run -d --name sne22-webapp -p 9000:9000 rp1sne22/my-webapp:latest'
         echo 'container now running!'
 
         echo 'container was successfully deployed to production!!!'
