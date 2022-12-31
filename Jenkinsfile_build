@@ -24,6 +24,12 @@ pipeline {
         sh 'docker run -d --name sne22-webapp -p 9000:9000 my-webapp'
         echo 'container test deployment was successfull>>>'
       }
+    }
+
+    stage('Security Scan') {
+      steps {
+        snykContainerScan containerId: 'sne22-webapp', failOnError: false, failOnIssues: false, snykInstallation: 'Snyk', snykTokenId: 'Snyk-Jenkins'
+      }
     }   
 
     stage('Push') {
