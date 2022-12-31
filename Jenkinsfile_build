@@ -26,9 +26,9 @@ pipeline {
       }
     }
 
-    stage('Configure security settings') {
+    stage('Security Scan') {
       steps {
-        snykSecurity severity: 'critical', snykInstallation: 'Snyk', snykTokenId: 'Snyk-Jenkins'
+        snykSecurity additionalArguments: '--docker sne22-webapp', severity: 'critical', snykInstallation: 'Snyk', snykTokenId: 'Snyk-Jenkins', targetFile: 'Dockerfile'
       }
     }
 
