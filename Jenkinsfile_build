@@ -13,16 +13,16 @@ pipeline {
 
     stage('Build') {
       steps {
-        sh 'sudo docker stop sne22-webapp'
-        sh 'sudo docker rm sne22-webapp'
-        sh 'sudo docker build -t my-webapp .'
+        sh 'docker stop sne22-webapp'
+        sh 'docker rm sne22-webapp'
+        sh 'docker build -t my-webapp .'
         echo 'build completed>>>'
       }
     }
 
     stage('Test') {
       steps {
-        sh 'sudo docker run -d --name sne22-webapp -p 9000:9000 my-webapp'
+        sh 'docker run -d --name sne22-webapp -p 9000:9000 my-webapp'
         echo 'container test deployment was successfull>>>'
       }
     }
@@ -36,7 +36,7 @@ pipeline {
     stage('Push') {
       steps {
         echo 'now pushing working image to dockerhub...'
-        sh 'docker login -u sne22 -p dckr_pat_qKDzQb7FvH9_keGP_gZCM4V1d_c docker.io'
+        sh 'docker login -u samsonidowu -p dckr_pat_qKDzQb7FvH9_keGP_gZCM4V1d_c docker.io'
         sh 'docker tag my-webapp samsonidowu/my-webapp:latest'
         sh 'docker push samsonidowu/my-webapp:latest'
         echo 'container image push was successfull>>>'
