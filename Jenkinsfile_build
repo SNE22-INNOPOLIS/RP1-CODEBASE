@@ -24,23 +24,7 @@ pipeline {
         sh 'docker run -d --name sne22-webapp -p 9000:9000 my-webapp'
         echo 'container test deployment was successfull>>>'
       }
-    }
-
-    stage('Security Scan') {
-      steps {
-        // Install Snyk
-        withEnv(["SNYK_TOKEN=${Snyk-Jenkins}"]) {
-          sh 'npm install -g snyk'
-          // Run security scan on docker container sne22-webapp
-          try {
-            sh 'snyk test --docker sne22-webapp'
-          } catch (err) {
-            // Do not stop build on error
-            echo 'Security scan failed, but continuing build.'
-          }
-       }
-      }
-    }     
+    }   
 
     stage('Push') {
       steps {
