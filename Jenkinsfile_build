@@ -26,10 +26,16 @@ pipeline {
       }
     }
 
+    stage('Configure security settings') {
+      steps {
+        snykSecurity severity: 'critical', snykInstallation: 'Snyk', snykTokenId: 'Snyk-Jenkins'
+      }
+    }
+
     stage('Push') {
       steps {
         echo 'now pushing working image to dockerhub...'
-        sh 'docker login -u samsonidowu -p dckr_pat_qKDzQb7FvH9_keGP_gZCM4V1d_c docker.io'
+        sh 'docker login -u sne22 -p dckr_pat_qKDzQb7FvH9_keGP_gZCM4V1d_c docker.io'
         sh 'docker tag my-webapp samsonidowu/my-webapp:latest'
         sh 'docker push samsonidowu/my-webapp:latest'
         echo 'container image push was successfull>>>'
