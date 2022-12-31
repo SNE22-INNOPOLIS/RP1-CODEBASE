@@ -13,15 +13,15 @@ pipeline {
 
     stage('Build') {
       steps {
-        sh 'docker rm -f sne22-webapp'
-        sh 'docker build -t my-webapp .'
+        sh 'sudo docker rm -f sne22-webapp'
+        sh 'sudo docker build -t my-webapp .'
         echo 'build completed>>>'
       }
     }
 
     stage('Test') {
       steps {
-        sh 'docker run -d --name sne22-webapp -p 9000:9000 my-webapp'
+        sh 'sudo docker run -d --name sne22-webapp -p 9000:9000 my-webapp'
         echo 'container test deployment was successfull>>>'
       }
     }
