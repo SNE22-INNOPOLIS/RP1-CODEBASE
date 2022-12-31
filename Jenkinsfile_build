@@ -28,7 +28,10 @@ pipeline {
 
     stage('Security Scan') {
       steps {
-        snykSecurity additionalArguments: '--docker my-webapp', severity: 'critical', snykInstallation: 'Snyk', snykTokenId: 'Snyk-Jenkins', targetFile: 'Dockerfile'
+        def scanResult = snykSecurity additionalArguments: '--docker my-webapp', failOnError: false, severity: 'critical', snykInstallation: 'Snyk', snykTokenId: 'Snyk-Jenkins', targetFile: 'Dockerfile'
+        // Check the scan result but do not stop the build
+        if (scanResult.contains("✗")) {
+            error("Security vulnerabilities were found with severity 'critical' or higher. Stopping the build.")
       }
     }
 
