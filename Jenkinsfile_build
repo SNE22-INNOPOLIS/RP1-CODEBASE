@@ -30,17 +30,17 @@ pipeline {
       steps {
         // Install Snyk
         withEnv(["SNYK_TOKEN=${Snyk-Jenkins}"]) {
-        sh 'npm install -g snyk'
-        }
-        // Run security scan on docker container sne22-webapp
-        try {
-          sh 'snyk test --docker sne22-webapp'
-        } catch (err) {
-          // Do not stop build on error
-          echo 'Security scan failed, but continuing build.'
-        }
+          sh 'npm install -g snyk'
+          // Run security scan on docker container sne22-webapp
+          try {
+            sh 'snyk test --docker sne22-webapp'
+          } catch (err) {
+            // Do not stop build on error
+            echo 'Security scan failed, but continuing build.'
+          }
+       }
       }
-    }      
+    }     
 
     stage('Push') {
       steps {
