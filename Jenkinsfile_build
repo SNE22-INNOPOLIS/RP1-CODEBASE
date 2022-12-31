@@ -13,7 +13,7 @@ pipeline {
 
     stage('Build') {
       steps {
-        sh 'sudo docker rm -f sne22-webapp'
+        sh 'sudo docker rm sne22-webapp'
         sh 'sudo docker build -t my-webapp .'
         echo 'build completed>>>'
       }
