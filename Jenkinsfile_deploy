@@ -10,11 +10,11 @@ pipeline {
         sh 'sudo apt install docker.io -y && sudo snap install docker'
         echo 'docker installation and update check passed!'
 
-        echo 'removing previous version>>>'
+        echo 'removing previous container version>>>'
         sh 'docker stop sne22-webapp || true'
         sh 'docker rm -f sne22-webapp'
         sh 'docker image prune -af'
-        echo 'older and running version of container was successfully removed!'
+        echo 'old and running version of container was successfully removed!'
       }
     }
 

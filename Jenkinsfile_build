@@ -3,6 +3,7 @@ pipeline {
 
   stages {
 
+    // Building and Testing the application.
     stage('Install') {
       steps {
         sh 'sudo apt-get update'
@@ -14,11 +15,13 @@ pipeline {
     stage('Build') {
       steps {
         sh 'docker rm -f sne22-webapp'
+        echo 'redundant container check passed!'
         sh 'docker build -t my-webapp .'
         echo 'build completed>>>'
       }
     }
-
+    
+    // Testing the container run-time
     stage('Test') {
       steps {
         sh 'docker run -d --name sne22-webapp -p 9000:9000 my-webapp'
@@ -26,12 +29,14 @@ pipeline {
       }
     }
 
+    // Security scan using Snyk
     stage('Security Scan') {
       steps {
         snykSecurity additionalArguments: '--docker my-webapp',failOnError: false, failOnIssues: false, snykInstallation: 'Snyk', snykTokenId: 'Snyk-Jenkins', targetFile: 'Dockerfile'
       }
-    }  
-
+    }
+    
+    // Pushing application and it's artifacts to container repository
     stage('Push') {
       steps {
         echo 'now pushing working image to dockerhub...'
@@ -41,6 +46,8 @@ pipeline {
         echo 'container image push was successfull>>>'
       }
     }
+    
+    // Deleting the container from the jenkins agent node
     stage('Cleanup') {
       steps {
         echo 'initializing test server cleanup...'
