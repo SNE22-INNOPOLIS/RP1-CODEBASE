@@ -4,9 +4,9 @@ FROM node:latest
 # define working directory within container
 WORKDIR /app
 
-# copy packages
+# copy application files and data
 #COPY . .
-COPY ./webdata .
+COPY ./webdata/* .
 
 # install dependency npm
 RUN rm -rf node_modules package-lock.json
