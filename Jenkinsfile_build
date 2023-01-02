@@ -28,7 +28,7 @@ pipeline {
 
     stage('Security Scan') {
       steps {
-        snykContainerScan containerId: 'sne22-webapp', failOnError: false, failOnIssues: false, snykInstallation: 'Snyk', snykTokenId: 'Snyk-Jenkins'
+        snykContainerScan containerId: 'sne22-webapp', failOnIssues: false, snykInstallation: 'Snyk', snykTokenId: 'Snyk-Jenkins'
       }
     }   
 
