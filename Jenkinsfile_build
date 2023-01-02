@@ -20,7 +20,7 @@ pipeline {
         echo 'build completed>>>'
       }
     }
-
+    
     // Testing the container run-time
     stage('Test') {
       steps {
@@ -35,18 +35,18 @@ pipeline {
         snykSecurity additionalArguments: '--docker my-webapp',failOnError: false, failOnIssues: false, snykInstallation: 'Snyk', snykTokenId: 'Snyk-Jenkins', targetFile: 'Dockerfile'
       }
     }
-
+    
     // Pushing application and it's artifacts to container repository
     stage('Push') {
       steps {
         echo 'now pushing working image to dockerhub...'
-        sh 'docker login -u samsonidowu -p dckr_pat_qKDzQb7FvH9_keGP_gZCM4V1d_c docker.io'
-        sh 'docker tag my-webapp samsonidowu/my-webapp:latest'
-        sh 'docker push samsonidowu/my-webapp:latest'
+        sh 'docker login -u rp1sne22 -p dckr_pat_gi6co2PnC5xTtoElVINANoHAAt4 docker.io'
+        sh 'docker tag my-webapp rp1sne22/my-webapp:latest'
+        sh 'docker push rp1sne22/my-webapp:latest'
         echo 'container image push was successfull>>>'
       }
     }
-
+    
     // Deleting the container from the jenkins agent node
     stage('Cleanup') {
       steps {
