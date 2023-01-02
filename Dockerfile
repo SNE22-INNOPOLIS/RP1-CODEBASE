@@ -6,8 +6,7 @@ WORKDIR /app
 
 # copy packages
 #COPY . .
-COPY webdata/webapp.js .
-COPY webdata/package.json .
+COPY ./webdata .
 
 # install dependency npm
 RUN rm -rf node_modules package-lock.json
