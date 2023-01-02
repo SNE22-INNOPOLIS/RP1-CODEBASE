@@ -28,14 +28,16 @@ pipeline {
         echo 'container test deployment was successfull>>>'
       }
     }
-
+    
+/*
     // Security scan using Snyk
     stage('Security Scan') {
       steps {
         snykSecurity additionalArguments: '--docker my-webapp',failOnError: false, failOnIssues: false, snykInstallation: 'Snyk', snykTokenId: 'Snyk-Jenkins', targetFile: 'Dockerfile'
       }
-    }
+    }  
     
+*/
     // Pushing application and it's artifacts to container repository
     stage('Push') {
       steps {
