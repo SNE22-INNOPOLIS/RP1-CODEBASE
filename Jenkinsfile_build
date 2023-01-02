@@ -29,7 +29,6 @@ pipeline {
       }
     }
     
-/*
     // Security scan using Snyk
     stage('Security Scan') {
       steps {
@@ -37,7 +36,6 @@ pipeline {
       }
     }  
     
-*/
     // Pushing application and it's artifacts to container repository
     stage('Push') {
       steps {
