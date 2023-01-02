@@ -6,8 +6,9 @@ pipeline {
     // Removing previous and running versions of the container image
     stage('Clean') {
       steps {
-        //sh 'sudo apt-get update -y'
-        //sh 'sudo apt install docker.io -y && sudo snap install docker'
+        sh 'sudo apt-get update -y'
+        sh 'sudo apt install docker.io -y && sudo snap install docker'
+        echo 'docker installation and update check passed!'
 
         echo 'removing previous version>>>'
         sh 'docker stop sne22-webapp || true'
@@ -16,7 +17,7 @@ pipeline {
         echo 'older and running version of container was successfully removed!'
       }
     }
- /*
+
     // Pulling the image from the container repository
     stage('Pull') {
       steps {
@@ -29,14 +30,13 @@ pipeline {
     // Deploying the container to production environment (webserver machine)
     stage('Deploy') {
       steps {
-        echo 'attempting container run on port 9000>>>'
-        sh 'docker run -d --name sne22-webapp -p 9000:9000 rp1sne22/my-webapp:latest'
+        echo 'attempting container run on port 80>>>'
+        sh 'docker run -d --name sne22-webapp -p 80:9000 rp1sne22/my-webapp:latest'
         echo 'container now running!'
 
         echo 'container was successfully deployed to production!!!'
-        echo 'you can now access the application on 10.1.1.40:9000 >>>'
+        echo 'you can now access the application on http://10.1.1.40 >>>'
       }
     }
-  */
   }
 }
