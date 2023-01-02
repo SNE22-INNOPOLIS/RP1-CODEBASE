@@ -6,7 +6,7 @@ WORKDIR /app
 
 # copy application files and data
 #COPY . .
-COPY ./webdata/ ./app
+COPY webdata .
 
 # install dependency npm
 RUN rm -rf node_modules package-lock.json
