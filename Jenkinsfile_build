@@ -15,6 +15,7 @@ pipeline {
     stage('Build') {
       steps {
         sh 'docker rm -f sne22-webapp'
+        echo 'redundant container check passed!'
         sh 'docker build -t my-webapp .'
         echo 'build completed>>>'
       }

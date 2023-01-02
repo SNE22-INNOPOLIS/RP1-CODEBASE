@@ -6,14 +6,15 @@ pipeline {
     // Removing previous and running versions of the container image
     stage('Clean') {
       steps {
-        //sh 'sudo apt-get update -y'
-        //sh 'sudo apt install docker.io -y && sudo snap install docker'
+        sh 'sudo apt-get update -y'
+        sh 'sudo apt install docker.io -y && sudo snap install docker'
+        echo 'docker install check passed!'
 
-        echo 'removing previous version>>>'
+        echo 'removing previous container version>>>'
         sh 'docker stop sne22-webapp || true'
         sh 'docker rm -f sne22-webapp'
         sh 'docker image prune -af'
-        echo 'older and running version of container was successfully removed!'
+        echo 'old and running version of container was successfully removed!'
       }
     }
 
