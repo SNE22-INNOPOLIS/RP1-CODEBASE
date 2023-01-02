@@ -17,4 +17,4 @@ RUN npm install express
 EXPOSE 9000
 
 # run code within container
-CMD ["node", "/app/webdata/webapp.js"]
+CMD ["node", "/app/webapp.js"]
