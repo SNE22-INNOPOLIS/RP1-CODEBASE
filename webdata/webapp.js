@@ -8,9 +8,9 @@ app.get('/', (req, res) => {
   <title> DevSecOps Tool Chain Project (RP1) </title>
   </head>
 
-    <body style="background-color:Cornsilk;">  
+    <body style="background-color:LightGray;">  
     <h1> DevSecOps Tool Chain Project (RP1) </h1>
-      <h3 style="background-color:SlateBlue;">This project was done by Samson, Ayomide, Rolly and Emeka.</h3>
+      <h3 style="background-color:Yellow;">This project was done by Samson, Ayomide, Rolly and Emeka.</h3>
 
       <p> Resources used are located at: </p>
       <p> Jenkins Master: 10.1.1.41 </p>
