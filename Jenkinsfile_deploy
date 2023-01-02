@@ -16,7 +16,7 @@ pipeline {
         echo 'older and running version of container was successfully removed!'
       }
     }
-
+ /*
     // Pulling the image from the container repository
     stage('Pull') {
       steps {
@@ -37,5 +37,6 @@ pipeline {
         echo 'you can now access the application on 10.1.1.40:9000 >>>'
       }
     }
+  */
   }
 }
