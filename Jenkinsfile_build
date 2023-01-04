@@ -6,6 +6,10 @@ pipeline {
     stage('Send Start Alert') {
       steps {
         script {
+          // Get the user who launched the job
+          //wrap([$class: 'BuildUser']) {
+          //  def user = env.BUILD_USER
+          //}
           // Send start notification
           telegramSend(
             token: '5451305173:AAGSmRL_518hBsPx3N_Zih_cy0oeMbZhpyI',
