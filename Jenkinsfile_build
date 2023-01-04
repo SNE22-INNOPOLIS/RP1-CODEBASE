@@ -6,16 +6,16 @@ pipeline {
     stage('Build Start Alert') {
       steps {
         wrap([$class: 'BuildUser']) {
-          def user = env.BUILD_USER_ID
+          user = "${BUILD_USER}"
         }
         script {
           // Get the user who launched the job
-          def user = env.USERNAME
+          //def user = env.USERNAME
           // Send start notification
           telegramSend(
             token: '5451305173:AAGSmRL_518hBsPx3N_Zih_cy0oeMbZhpyI',
             chatId: '-688306623',
-            message: "The RP1 Build and Test job has started and was launched by user ${USER}."
+            message: "The RP1 Build and Test job has started and was launched by user ${user}."
           )
         }
       }
