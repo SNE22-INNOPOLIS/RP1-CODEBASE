@@ -64,7 +64,7 @@ pipeline {
       sh '''
         curl -s -X POST https://api.telegram.org/bot5451305173:AAGSmRL_518hBsPx3N_Zih_cy0oeMbZhpyI/sendMessage \\
           -d chat_id=-688306623 \\
-          -d text="Hello Guys. This is just to notify RP1 Build and Test Job finished with status: ${RP1_Build_and_Test:status}"
+          -d text="Hello Guys. This is just to notify RP1 Build and Test Job finished with status: ${RP1 Build and Test:status}"
       '''
     }
   }
