@@ -3,6 +3,21 @@ pipeline {
 
   stages {
 
+    stage('Build Start Alert') {
+      steps {
+        script {
+          // Get the user who launched the job
+          def user = env.USERNAME
+          // Send start notification
+          telegramSend(
+            token: '5451305173:AAGSmRL_518hBsPx3N_Zih_cy0oeMbZhpyI',
+            chatId: '-688306623',
+            message: "The RP1 Build and Test job has started and was launched by user ${user}.."
+          )
+        }
+      }
+    }
+
     // Building and Testing the application.
     stage('Install') {
       steps {
@@ -57,17 +72,6 @@ pipeline {
         echo 'removed docker image'
       }
     }
-  }
-
-  environment {
-      // Get the user who launched the job
-      def user = env.USERNAME
-      // Send start notification
-      telegramSend(
-          token: '5451305173:AAGSmRL_518hBsPx3N_Zih_cy0oeMbZhpyI',
-          chatId: '-688306623',
-          message: "The RP1 Build and Test job has started and was launched by user ${user}.."
-      )
   }
 
   // Sending Notification upon job completion
