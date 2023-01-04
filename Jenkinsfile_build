@@ -61,7 +61,7 @@ pipeline {
   // Sending Notification upon job completion
   post {
     always {
-      telegram apiToken: '5972680305:AAFLVlKPt_nx2undEBCBJ4hz6MNx56ZpmII', chatId: 'DevSecOps - Project RP1', message: 'Build finished with status: ${currentBuild.currentResult}'
+      telegram apiToken: '5451305173:AAGSmRL_518hBsPx3N_Zih_cy0oeMbZhpyI', chatId: 'DevSecOps - Project RP1', message: 'Build finished with status: ${currentBuild.currentResult}'
     }
   }
 }
