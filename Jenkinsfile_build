@@ -1,18 +1,6 @@
 pipeline {
   agent any
 
-  post {
-        always {
-            script {
-                // Send start notification
-                telegramSend(
-                    token: '5451305173:AAGSmRL_518hBsPx3N_Zih_cy0oeMbZhpyI',
-                    chatId: '-688306623',
-                    message: "The RP1 Build and Test job has started."
-                )
-            }
-        }
-  }
   stages {
 
     // Building and Testing the application.
@@ -72,6 +60,16 @@ pipeline {
   }
   // Sending Notification upon job completion
   post {
+        always {
+            script {
+                // Send start notification
+                telegramSend(
+                    token: '5451305173:AAGSmRL_518hBsPx3N_Zih_cy0oeMbZhpyI',
+                    chatId: '-688306623',
+                    message: "The RP1 Build and Test job has started."
+                )
+            }
+        }
         success {
             script {
                 // Send success notification
