@@ -8,7 +8,7 @@ pipeline {
         //script {
           //def props = readProperties file: 'extravars.properties'
           //env.User = "${BUILD_USER}"
-        }
+        //}
         script {
           // Get the user who launched the job
           wrap([$class: 'BuildUser']) {
