@@ -7,14 +7,14 @@ pipeline {
       steps {
         script {
           // Get the user who launched the job
-          wrap([$class: 'BuildUser']) {
-            def user = env.BUILD_USER
-          }
+          //wrap([$class: 'BuildUser']) {
+          //  def user = env.BUILD_USER
+          //}
           // Send start notification
           telegramSend(
             token: '5451305173:AAGSmRL_518hBsPx3N_Zih_cy0oeMbZhpyI',
             chatId: '-688306623',
-            message: "The RP1 Build and Test job has started and was launched by user ${user}."
+            message: "The job RP1 Build and Test has started and is currently running."
           )
         }
       }
@@ -84,7 +84,7 @@ pipeline {
                 telegramSend(
                     token: '5451305173:AAGSmRL_518hBsPx3N_Zih_cy0oeMbZhpyI',
                     chatId: '-688306623',
-                    message: "The RP1 Build and Test job has completed successfully."
+                    message: "The job RP1 Build and Test has completed successfully."
                 )
             }
         }
@@ -96,7 +96,7 @@ pipeline {
                 telegramSend(
                     token: '5451305173:AAGSmRL_518hBsPx3N_Zih_cy0oeMbZhpyI',
                     chatId: '-688306623',
-                    message: "The RP1 Build and Test job has failed due to ${failureCause}."
+                    message: "The job RP1 Build and Test has failed due to ${failureCause}."
                 )
             }
         }
