@@ -61,9 +61,9 @@ pipeline {
   // Sending Notification upon job completion
   post {
     always {
-       notify telegramSend message: "Build finished: ${currentBuild.currentResult}",
-                                botName: "DevSecOps_RP1",
-                                room: "DevSecOps - Project RP1"
+      notify telegramSend message: "Build finished with status: ${currentBuild.currentResult}",
+                            botName: "DevSecOps_RP1",
+                            room: "DevSecOps - Project RP1"
     }
   }
 }
