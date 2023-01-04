@@ -61,7 +61,11 @@ pipeline {
   // Sending Notification upon job completion
   post {
     always {
-      sh 'curl -s -X POST https://api.telegram.org/bot[5451305173:AAGSmRL_518hBsPx3N_Zih_cy0oeMbZhpyI]/sendMessage -d chat_id=[DevSecOps - Project RP1] -d text="Build finished with status: ${currentBuild.currentResult}"'
+      sh '''
+        curl -s -X POST https://api.telegram.org/bot5451305173:AAGSmRL_518hBsPx3N_Zih_cy0oeMbZhpyI/sendMessage \\
+        -d chat_id=DevSecOps - Project RP1 \\
+        -d text="Build finished with status: ${currentBuild.currentResult}"
+      '''
     }
   }
 }
