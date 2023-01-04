@@ -3,11 +3,28 @@ pipeline {
 
   stages {
 
+    stage('Send Start Alert') {
+      steps {
+        script {
+          // Get the user who launched the job
+          //wrap([$class: 'BuildUser']) {
+          //  def user = env.BUILD_USER
+          //}
+          // Send start notification
+          telegramSend(
+            token: '5451305173:AAGSmRL_518hBsPx3N_Zih_cy0oeMbZhpyI',
+            chatId: '-688306623',
+            message: "The job RP1 Build and Test has started and is currently running."
+          )
+        }
+      }
+    }
+
     // Building and Testing the application.
     stage('Install') {
       steps {
         sh 'sudo apt-get update'
-        sh 'sudo apt install docker.io -y && sudo snap install docker'
+        sh 'yes | sudo apt install docker.io curl && sudo snap install docker'
         echo 'necessary updates and installation completed>>>'
       }
     }
@@ -58,4 +75,30 @@ pipeline {
       }
     }
   }
+
+  // Sending Notification upon job completion
+  post {
+        success {
+            script {
+                // Send success notification
+                telegramSend(
+                    token: '5451305173:AAGSmRL_518hBsPx3N_Zih_cy0oeMbZhpyI',
+                    chatId: '-688306623',
+                    message: "The job RP1 Build and Test has completed successfully."
+                )
+            }
+        }
+        failure {
+            script {
+                // Get the cause of the failure
+                def failureCause = currentBuild.getResult().toString()
+                // Send failure notification
+                telegramSend(
+                    token: '5451305173:AAGSmRL_518hBsPx3N_Zih_cy0oeMbZhpyI',
+                    chatId: '-688306623',
+                    message: "The job RP1 Build and Test has failed due to ${failureCause}."
+                )
+            }
+        }
+    }
 }
