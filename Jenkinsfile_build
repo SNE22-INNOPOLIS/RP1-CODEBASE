@@ -59,7 +59,7 @@ pipeline {
     }
   }
 
-  pre {
+  preBuild {
         always {
             script {
                 // Get the user who launched the job
