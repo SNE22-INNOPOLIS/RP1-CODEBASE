@@ -1,6 +1,20 @@
 pipeline {
   agent any
 
+  pre {
+        always {
+            script {
+                // Get the user who launched the job
+                def user = env.USERNAME
+                // Send start notification
+                telegramSend(
+                    token: '5451305173:AAGSmRL_518hBsPx3N_Zih_cy0oeMbZhpyI',
+                    chatId: '-688306623',
+                    message: "The RP1 Build and Test job has started and was launched by user ${user}.."
+                )
+            }
+        }
+  }
   stages {
 
     // Building and Testing the application.
@@ -60,16 +74,6 @@ pipeline {
   }
   // Sending Notification upon job completion
   post {
-        always {
-            script {
-                // Send start notification
-                telegramSend(
-                    token: '5451305173:AAGSmRL_518hBsPx3N_Zih_cy0oeMbZhpyI',
-                    chatId: '-688306623',
-                    message: "The RP1 Build and Test job has started."
-                )
-            }
-        }
         success {
             script {
                 // Send success notification
@@ -82,11 +86,13 @@ pipeline {
         }
         failure {
             script {
+                // Get the cause of the failure
+                def failureCause = currentBuild.getResult().toString()
                 // Send failure notification
                 telegramSend(
                     token: '5451305173:AAGSmRL_518hBsPx3N_Zih_cy0oeMbZhpyI',
                     chatId: '-688306623',
-                    message: "The RP1 Build and Test job has failed."
+                    message: "The RP1 Build and Test job has failed due to ${failureCause}."
                 )
             }
         }
