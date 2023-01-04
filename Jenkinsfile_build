@@ -7,7 +7,7 @@ pipeline {
     stage('Install') {
       steps {
         sh 'sudo apt-get update'
-        sh 'sudo apt install docker.io -y && sudo snap install docker'
+        sh 'yes | sudo apt install docker.io curl && sudo snap install docker'
         echo 'necessary updates and installation completed>>>'
       }
     }
