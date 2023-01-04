@@ -61,9 +61,9 @@ pipeline {
   // Sending Notification upon job completion
   post {
     always {
-      sh 'curl -X POST -H "Content-Type: application/json" -d ' +
-        '\'{"text": "Build finished with status: ${currentBuild.currentResult}\", "title": "Jenkins Build Notification"}\' ' +
-        'https://api.notify.events/v1/notifications'
+       notify telegramSend message: "Build finished: ${currentBuild.currentResult}",
+                                botName: "DevSecOps_RP1",
+                                room: "DevSecOps - Project RP1"
     }
   }
 }
