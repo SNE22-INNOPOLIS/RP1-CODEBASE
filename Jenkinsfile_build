@@ -61,8 +61,10 @@ pipeline {
   // Sending Notification upon job completion
   post {
     always {
-      currentResult = sh(returnStdout: true, script: 'curl -s "http://jenkins-server/job/RP1%20Build%20and%20Test/lastBuild/api/json?tree=result" | jq -r .result').trim()
-      sh "curl -s -X POST https://api.telegram.org/bot5451305173:AAGSmRL_518hBsPx3N_Zih_cy0oeMbZhpyI/sendMessage -d chat_id=-688306623 -d text='RP1 Build and Test finished with status: $currentResult'"
+      steps {
+        currentResult = sh(returnStdout: true, script: 'curl -s "http://jenkins-server/job/RP1%20Build%20and%20Test/lastBuild/api/json?tree=result" | jq -r .result').trim()
+        sh "curl -s -X POST https://api.telegram.org/bot5451305173:AAGSmRL_518hBsPx3N_Zih_cy0oeMbZhpyI/sendMessage -d chat_id=-688306623 -d text='RP1 Build and Test finished with status: $currentResult'"
+      }
     }
   }
 }
